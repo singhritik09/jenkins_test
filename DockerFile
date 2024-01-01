@@ -1,13 +1,12 @@
-FROM python:3.10-slim
+FROM ubuntu
+
+RUN apt update
+RUN apt install python3-pip -y
+RUN pip3 install Flask
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
-# RUN pip install --no-cache-dir -r requirements.txt
+CMD ["python3","-m","flask","run","--host=0.0.0.0"]
 
-EXPOSE 5000
-
-ENV NAME World
-
-CMD ["python", "main.py"]
